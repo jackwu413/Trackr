@@ -41,6 +41,21 @@ class ShipmentsController: UICollectionViewController, UICollectionViewDelegateF
 
 class ItemCell: BaseCell {
     
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Item Name"
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    let dateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Date: "
+        label.textColor = .darkGray
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+
     let checkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -56,13 +71,34 @@ class ItemCell: BaseCell {
     
     override func setupViews() {
 //        backgroundColor = .blue
+        
+        setupContainerView()
+        
         addSubview(checkImageView)
         addConstraintsWithFormat(format: "H:[v0(68)]-12-|", views: checkImageView)
-        addConstraintsWithFormat(format: "V:|-16-[v0(68)]", views: checkImageView)
+        addConstraintsWithFormat(format: "V:[v0(68)]", views: checkImageView)
+        NSLayoutConstraint.activate([checkImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
         
         addSubview(dividerLineView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: dividerLineView)
         addConstraintsWithFormat(format: "V:[v0(1)]|", views: dividerLineView)
+    }
+    
+    private func setupContainerView() {
+        let containerView = UIView()
+//        containerView.backgroundColor = .red
+        addSubview(containerView)
+        
+        addConstraintsWithFormat(format: "H:|-12-[v0]-150-|", views: containerView)
+        addConstraintsWithFormat(format: "V:[v0(60)]", views: containerView)
+        NSLayoutConstraint.activate([containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
+        
+        containerView.addSubview(nameLabel)
+        containerView.addSubview(dateLabel)
+        containerView.addConstraintsWithFormat(format: "H:|[v0]|", views: nameLabel)
+        containerView.addConstraintsWithFormat(format: "V:|[v0][v1(24)]|", views: nameLabel, dateLabel)
+        containerView.addConstraintsWithFormat(format: "H:|[v0]|", views: dateLabel)
+
     }
 }
 
