@@ -193,7 +193,7 @@ class Popup: UIView {
         containerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         containerView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25).isActive = true
 
-        NSLayoutConstraint.activate([containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
+        NSLayoutConstraint.activate([containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -15)])
         NSLayoutConstraint.activate([containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor)])
         
         containerView.addSubview(mainStack)
