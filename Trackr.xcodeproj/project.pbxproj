@@ -44,6 +44,7 @@
 		046D27A0245861FB005EA199 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				04F70BF22459FC2800FF0B7B /* Popup.swift */,
 				04F81FB3243F685200241456 /* ShipmentsController.swift */,
 				04F81FC3243F9B0B00241456 /* CustomTabBarController.swift */,
 			);
@@ -75,7 +76,6 @@
 				04F81FB8243F685400241456 /* Assets.xcassets */,
 				04F81FBA243F685400241456 /* LaunchScreen.storyboard */,
 				04F81FBD243F685400241456 /* Info.plist */,
-				04F70BF22459FC2800FF0B7B /* Popup.swift */,
 				046D27A0245861FB005EA199 /* Controller */,
 			);
 			path = Trackr;
