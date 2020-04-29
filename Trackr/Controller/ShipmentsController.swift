@@ -18,8 +18,27 @@ class ShipmentsController: UICollectionViewController, UICollectionViewDelegateF
         collectionView?.backgroundColor = .white
         collectionView?.alwaysBounceVertical = true
         collectionView?.register(ItemCell.self, forCellWithReuseIdentifier: cellID)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(optionsPressed))
+        
+
+        
     }
 
+    @objc func addPressed() {
+        print("add item pressed")
+        let popup = Popup()
+        //collectionView?.addSubview(popup)
+        view.addSubview(popup)
+        
+    }
+    
+    @objc func optionsPressed() {
+        print("options pressed")
+    }
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
