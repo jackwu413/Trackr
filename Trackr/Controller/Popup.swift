@@ -29,44 +29,66 @@ class Popup: UIView {
         field.layer.cornerRadius = 8
         field.setLeftPaddingPoints(10)
         field.setRightPaddingPoints(10)
+        field.autocorrectionType = .no
         return field
     }()
     
     let uspsButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
+        button.backgroundColor = #colorLiteral(red: 0, green: 0.2884084582, blue: 0.5144667029, alpha: 1)
         button.setTitle("USPS", for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(uspsPressed), for: .touchUpInside)
         return button
     }()
+    
+    @objc func uspsPressed() {
+        self.uspsButton.layer.borderWidth = 4
+        self.upsButton.layer.borderWidth = 0
+        self.fedexButton.layer.borderWidth = 0
+    }
     
     let upsButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
+        button.backgroundColor = #colorLiteral(red: 1, green: 0.6599032283, blue: 0, alpha: 1)
         button.setTitle("UPS", for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(upsPressed), for: .touchUpInside)
         return button
     }()
     
+    @objc func upsPressed() {
+        self.uspsButton.layer.borderWidth = 0
+        self.upsButton.layer.borderWidth = 4
+        self.fedexButton.layer.borderWidth = 0
+    }
+    
     let fedexButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
+        button.backgroundColor = #colorLiteral(red: 0.9717112184, green: 0.3901584744, blue: 0.0003779707768, alpha: 1)
         button.setTitle("FedEx", for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(fedexPressed), for: .touchUpInside)
         return button
     }()
+    
+    @objc func fedexPressed() {
+        self.uspsButton.layer.borderWidth = 0
+        self.upsButton.layer.borderWidth = 0
+        self.fedexButton.layer.borderWidth = 4
+    }
 
     lazy var carrierStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [uspsButton, upsButton, fedexButton])
         stack.translatesAutoresizingMaskIntoConstraints = false
-        uspsButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.85).isActive = true
+        uspsButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.9).isActive = true
         uspsButton.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.3).isActive = true
-        upsButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.85).isActive = true
+        upsButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.9).isActive = true
         upsButton.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.3).isActive = true
-        fedexButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.85).isActive = true
+        fedexButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.9).isActive = true
         fedexButton.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.3).isActive = true
         stack.distribution = .equalSpacing
         stack.alignment = .center
@@ -75,32 +97,40 @@ class Popup: UIView {
         return stack
     }()
     
-    let cancelButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .blue
+    let cancelButton: completionButton = {
+        let button = completionButton()
+        button.backgroundColor = #colorLiteral(red: 0.01864526048, green: 0.4776622653, blue: 1, alpha: 1)
         button.setTitle("Cancel", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(animateOut), for: .touchUpInside)
         return button
     }()
     
-    let doneButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .blue
+    let doneButton: completionButton = {
+        let button = completionButton()
+        button.backgroundColor = #colorLiteral(red: 0.01864526048, green: 0.4776622653, blue: 1, alpha: 1)
         button.setTitle("Done", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(donePressed), for: .touchUpInside)
         return button
     }()
+    
+    @objc func donePressed() {
+        self.animateOut()
+    }
     
     lazy var actionStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [cancelButton, doneButton])
         stack.axis = .horizontal
         stack.distribution = .equalSpacing
         stack.alignment = .center
-        cancelButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.85).isActive = true
+        cancelButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.9).isActive = true
         cancelButton.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.45).isActive = true
-        doneButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.85).isActive = true
+        doneButton.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.9).isActive = true
         doneButton.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.45).isActive = true
         return stack
     }()
@@ -153,7 +183,7 @@ class Popup: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animateOut)))
+//        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animateOut)))
         
         self.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
         
@@ -175,6 +205,14 @@ class Popup: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class completionButton: UIButton {
+    override var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? #colorLiteral(red: 0.3913043281, green: 0.752583816, blue: 1, alpha: 1) : #colorLiteral(red: 0.01864526048, green: 0.4776622653, blue: 1, alpha: 1)
+        }
     }
 }
 

@@ -26,7 +26,6 @@ class ShipmentsController: UICollectionViewController, UICollectionViewDelegateF
     }
 
     @objc func addPressed() {
-        print("add item pressed")
         let popup = Popup()
         //collectionView?.addSubview(popup)
         view.addSubview(popup)
