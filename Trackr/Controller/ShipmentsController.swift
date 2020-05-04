@@ -28,6 +28,8 @@ class Item: NSObject {
 
 class ShipmentsController: UICollectionViewController, UICollectionViewDelegateFlowLayout, PopupDelegate {
     
+    var refreshControl = UIRefreshControl()
+    
     private let cellID = "cellID"
     
     var items: [Item]?
@@ -41,9 +43,25 @@ class ShipmentsController: UICollectionViewController, UICollectionViewDelegateF
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addPressed))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(optionsPressed))
         
+//        refreshControl.attributedTitle = NSAttributedString(string: "Loading Shipments")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        collectionView?.addSubview(refreshControl)
+        
         items = []
     }
 
+    @objc func refresh() {
+        print("Refreshing Screen now...")
+        //Update all items that aren't delivered yet
+        for item in items! {
+            if !item.delivered! {
+                loadItemData(item: item)
+            }
+        }
+        collectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     @objc func addPressed() {
         let popup = Popup()
         popup.delegate = self
