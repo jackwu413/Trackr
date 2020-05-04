@@ -36,6 +36,7 @@ class Popup: UIView {
     let uspsButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = #colorLiteral(red: 0, green: 0.2884084582, blue: 0.5144667029, alpha: 1)
+        button.layer.borderColor = #colorLiteral(red: 0.01864526048, green: 0.4776622653, blue: 1, alpha: 1)
         button.setTitle("USPS", for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +53,7 @@ class Popup: UIView {
     let upsButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = #colorLiteral(red: 1, green: 0.6599032283, blue: 0, alpha: 1)
+        button.layer.borderColor = #colorLiteral(red: 0.01864526048, green: 0.4776622653, blue: 1, alpha: 1)
         button.setTitle("UPS", for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +70,7 @@ class Popup: UIView {
     let fedexButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = #colorLiteral(red: 0.9717112184, green: 0.3901584744, blue: 0.0003779707768, alpha: 1)
+        button.layer.borderColor = #colorLiteral(red: 0.01864526048, green: 0.4776622653, blue: 1, alpha: 1)
         button.setTitle("FedEx", for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -119,7 +122,37 @@ class Popup: UIView {
         return button
     }()
     
+    var delegate: PopupDelegate?
+    
     @objc func donePressed() {
+        
+        var carrier = ""
+        
+        //MARK: - TESTING PURPOSESE ONLY
+        nameInput.text = "Autonomous Ergochair 2"
+        trackingInput.text = "182736488333"
+        carrier = "fedex"
+        fedexButton.layer.borderWidth = 3
+        
+        
+        if nameInput.text == "" ||
+            trackingInput.text == "" ||
+            (uspsButton.layer.borderWidth == 0 &&
+                upsButton.layer.borderWidth == 0 &&
+                fedexButton.layer.borderWidth == 0) {
+            print("Alert user to fill in all necessary fields")
+            return
+        }
+        
+    
+        if uspsButton.layer.borderWidth != 0 {
+            carrier = "usps"
+        } else if upsButton.layer.borderWidth != 0 {
+            carrier = "ups"
+        } else {
+            carrier = "fedex"
+        }
+        delegate?.enterShipment(name: nameInput.text!, tracking: trackingInput.text!, carrier: carrier)
         self.animateOut()
     }
     

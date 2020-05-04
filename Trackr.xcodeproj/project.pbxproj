@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044766CD245D0F1D00C54316 /* ItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044766CC245D0F1D00C54316 /* ItemData.swift */; };
+		044F73B4245B294F000FF5ED /* Trackr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 044F73B2245B294F000FF5ED /* Trackr.xcdatamodeld */; };
 		04F70BF32459FC2800FF0B7B /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70BF22459FC2800FF0B7B /* Popup.swift */; };
 		04F81FB0243F685200241456 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F81FAF243F685200241456 /* AppDelegate.swift */; };
 		04F81FB2243F685200241456 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F81FB1243F685200241456 /* SceneDelegate.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		044766CC245D0F1D00C54316 /* ItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemData.swift; sourceTree = "<group>"; };
+		044F73B3245B294F000FF5ED /* Trackr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Trackr.xcdatamodel; sourceTree = "<group>"; };
 		04F70BF22459FC2800FF0B7B /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		04F81FAC243F685200241456 /* Trackr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trackr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F81FAF243F685200241456 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044766C9245B554C00C54316 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				044766CC245D0F1D00C54316 /* ItemData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		046D27A0245861FB005EA199 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +82,7 @@
 		04F81FAE243F685200241456 /* Trackr */ = {
 			isa = PBXGroup;
 			children = (
+				044766C9245B554C00C54316 /* Model */,
 				04F81FAF243F685200241456 /* AppDelegate.swift */,
 				04F81FB1243F685200241456 /* SceneDelegate.swift */,
 				04F81FB5243F685200241456 /* Main.storyboard */,
@@ -77,6 +90,7 @@
 				04F81FBA243F685400241456 /* LaunchScreen.storyboard */,
 				04F81FBD243F685400241456 /* Info.plist */,
 				046D27A0245861FB005EA199 /* Controller */,
+				044F73B2245B294F000FF5ED /* Trackr.xcdatamodeld */,
 			);
 			path = Trackr;
 			sourceTree = "<group>";
@@ -152,6 +166,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044766CD245D0F1D00C54316 /* ItemData.swift in Sources */,
+				044F73B4245B294F000FF5ED /* Trackr.xcdatamodeld in Sources */,
 				04F81FB4243F685200241456 /* ShipmentsController.swift in Sources */,
 				04F81FB0243F685200241456 /* AppDelegate.swift in Sources */,
 				04F70BF32459FC2800FF0B7B /* Popup.swift in Sources */,
@@ -354,6 +370,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		044F73B2245B294F000FF5ED /* Trackr.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				044F73B3245B294F000FF5ED /* Trackr.xcdatamodel */,
+			);
+			currentVersion = 044F73B3245B294F000FF5ED /* Trackr.xcdatamodel */;
+			path = Trackr.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 04F81FA4243F685200241456 /* Project object */;
 }
