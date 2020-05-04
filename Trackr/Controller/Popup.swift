@@ -129,10 +129,10 @@ class Popup: UIView {
         var carrier = ""
         
         //MARK: - TESTING PURPOSESE ONLY
-        nameInput.text = "Autonomous Ergochair 2"
-        trackingInput.text = "182736488333"
-        carrier = "fedex"
-        fedexButton.layer.borderWidth = 3
+//        nameInput.text = "Autonomous Ergochair 2"
+//        trackingInput.text = "182736488333"
+//        carrier = "fedex"
+//        fedexButton.layer.borderWidth = 3
         
         
         if nameInput.text == "" ||
@@ -152,7 +152,11 @@ class Popup: UIView {
         } else {
             carrier = "fedex"
         }
-        delegate?.enterShipment(name: nameInput.text!, tracking: trackingInput.text!, carrier: carrier)
+        
+        let name = nameInput.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let tracking = trackingInput.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        delegate?.enterShipment(name: name, tracking: tracking, carrier: carrier)
         self.animateOut()
     }
     

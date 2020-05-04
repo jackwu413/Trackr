@@ -102,6 +102,7 @@ class ShipmentsController: UICollectionViewController, UICollectionViewDelegateF
                 dateFormatter.dateFormat = "yyyy"
                 let year = dateFormatter.string(from: deliveryDate)
                 print("\(month)/\(day)/\(year)")
+                item.date = "Delivered: \(month)/\(day)/\(year)"
             } else {
                 item.delivered = false
                 let dateFormatter = DateFormatter()
@@ -118,7 +119,7 @@ class ShipmentsController: UICollectionViewController, UICollectionViewDelegateF
                 //set item.daysLeft to be (estimatedDate - today) if 1, delete s from "Days"
                 let curr = Date()
                 let daysBetween = Calendar.current.dateComponents([.day], from: curr, to: estimatedDate).day
-                if daysBetween! <= 1{
+                if daysBetween! <= 1 {
                     item.daysLeft = "1 Day"
                 } else {
                     item.daysLeft = "\(daysBetween) Days"
@@ -201,7 +202,7 @@ class ItemCell: BaseCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Item Name"
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
     }()
     
